@@ -21,19 +21,22 @@ def get_employees_by_age_range(age_lower_limit, age_upper_limit):
 def calculate_average_salary():
     total = 0
     average = 0
+    for item in employee_data:
+        total += item["salary"]
+    count = len(employee_data)
+    print(str(count))
+    average = total / count
+    return round(average,2)
 
-    #add your implementation to calculate here
-
-
-    return average
 
 def get_employees_by_dept(department):
     result = []
-
-    # Add your implementation from here
-
-
+    print(("Name"+"\t"+"Department").expandtabs(15))
+    for item in employee_data:
+        if item["department"]==department:
+            result.append(item)
     return result
+    
 
 def display_all_records():
     print(("Name" + "\t" +"Age" +"\t" +"Department" +"\t" +"Salary" ).expandtabs(15))
@@ -64,6 +67,7 @@ def display_main_menu():
 
     if option == '1':
         display_all_records()
+       
 
     elif option == '2':
         average_salary = calculate_average_salary()
@@ -78,7 +82,8 @@ def display_main_menu():
 
     elif option == '4':
         department = input("Name of Department = ")
-        employee_info = get_employees_by_dept(department)
+        employee_info = get_employees_by_dept(department.capitalize())
+        print("\n")
         display_records(employee_info)
 
     elif option == 'Q':
